@@ -1,5 +1,6 @@
 package com.nyxenn.gerenciadortarefas.model;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +11,7 @@ public class Tarefa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "O título é obrigatório")
     @Column(nullable = false)
     private String titulo;
 

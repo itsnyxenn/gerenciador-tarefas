@@ -1,5 +1,6 @@
 package com.nyxenn.gerenciadortarefas.controller;
 
+import jakarta.validation.Valid;
 import com.nyxenn.gerenciadortarefas.model.Tarefa;
 import com.nyxenn.gerenciadortarefas.repository.TarefaRepository;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class TarefaController {
     }
 
     @PostMapping
-    public Tarefa criar(@RequestBody Tarefa tarefa) {
+    public Tarefa criar(@Valid @RequestBody Tarefa tarefa) {
         return repository.save(tarefa);
     }
 
@@ -35,7 +36,7 @@ public class TarefaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tarefa> atualizar(@PathVariable Long id, @RequestBody Tarefa dados) {
+    public ResponseEntity<Tarefa> atualizar(@PathVariable Long id, @Valid @RequestBody Tarefa dados) {
         return repository.findById(id)
                 .map(tarefa -> {
                     tarefa.setTitulo(dados.getTitulo());
